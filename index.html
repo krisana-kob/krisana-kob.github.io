@@ -93,16 +93,22 @@
 
   <p>Welcome to my personal website hosted on GitHub Pages 🎉</p>
 
-  <!-- Top Tab (only Education for now) -->
-  <nav class="tab-bar" role="tablist">
-    <button class="tab-btn" role="tab" id="tab-education" aria-controls="panel-education" aria-selected="true">
-      Education
-    </button>
-  </nav>
+<!-- Education button -->
+  <button id="openEducation" class="tab-btn">Education</button>
 
-  <!-- Panel -->
-  <section id="panel-education" class="tab-panel" role="tabpanel" aria-labelledby="tab-education" aria-hidden="false">
-    {% include education.html %}
-  </section>
+  <!-- Popup -->
+  <div id="educationModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeEducation">&times;</span>
+      {% include education.html %}
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("educationModal");
+    document.getElementById("openEducation").onclick = () => modal.style.display = "block";
+    document.getElementById("closeEducation").onclick = () => modal.style.display = "none";
+    window.onclick = e => { if (e.target === modal) modal.style.display = "none"; }
+  </script>
 </body>
-</html
+</html>
