@@ -13,46 +13,78 @@
       background-color: #f9f9f9;
       color: #333;
     }
+
     h1 {
       color: #2c3e50;
       font-size: 2em;
       margin-bottom: 5px;
     }
+
     h3 {
       color: #555;
       font-weight: normal;
       margin-top: 0;
     }
+
     h2 {
       margin-top: 40px;
       color: #2980b9;
       border-bottom: 2px solid #ddd;
       padding-bottom: 5px;
     }
+
+    /* ===== Education Section Styles ===== */
     .education-list {
       list-style-type: none;
       padding: 0;
+      margin: 0;
     }
+
     .education-card {
-      margin: 15px 0;
-      padding: 16px;
       background: #fff;
-      border-radius: 6px;
+      border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 16px 20px;
+      margin: 16px 0;
     }
+
     .degree {
       font-weight: bold;
       font-size: 1.1em;
       margin: 0;
+      color: #2c3e50;
     }
+
     .school {
-      color: #555;
-      margin: 4px 0;
+      margin: 2px 0 4px 0;
+      font-size: 1rem;
+      color: #444;
     }
-    .theme {
+
+    .period {
+      margin: 0 0 8px 0;
       font-size: 0.95em;
-      margin: 4px 0;
+      color: #777;
     }
+
+    .theme {
+      margin: 0;
+      font-size: 0.95em;
+    }
+
+    .theme em {
+      font-style: italic;
+    }
+
+    /* Fix subscript/superscript alignment */
+    sub, sup {
+      font-size: 0.75em;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sub { bottom: -0.25em; }
+    sup { top: -0.45em; }
   </style>
 </head>
 <body>
