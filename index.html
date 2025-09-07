@@ -1,101 +1,96 @@
 ---
 ---
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Krisana Kobwittaya - My Website</title>
+  <meta charset="utf-8" />
+  <title>Krisana Kobwittaya - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      line-height: 1.6;
-      background-color: #f9f9f9;
-      color: #333;
-    }
+    body{font-family:Arial, sans-serif; margin:40px; line-height:1.6; background:#f9f9f9; color:#333}
+    h1{color:#2c3e50; margin:0 0 6px}
+    h3{color:#555; margin:0 0 24px; font-weight:normal}
 
-    h1 {
-      color: #2c3e50;
-      font-size: 2em;
-      margin-bottom: 5px;
+    /* ---------- Tabs ---------- */
+    .tabs{max-width:1000px}
+    .tab-list{
+      display:flex; gap:8px; flex-wrap:wrap; margin:0 0 14px; padding:0; list-style:none;
     }
+    .tab-btn{
+      appearance:none; border:1px solid #d9dde3; background:#fff; color:#2c3e50;
+      padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600;
+      box-shadow:0 1px 3px rgba(0,0,0,.06);
+    }
+    .tab-btn[aria-selected="true"]{
+      background:#2980b9; color:#fff; border-color:#2980b9;
+      box-shadow:0 2px 8px rgba(41,128,185,.25);
+    }
+    .tab-panel{
+      display:none; background:#fff; border:1px solid #e6e6e6; border-radius:12px;
+      padding:18px 20px; box-shadow:0 2px 10px rgba(0,0,0,.06);
+    }
+    .tab-panel[aria-hidden="false"]{display:block}
 
-    h3 {
-      color: #555;
-      font-weight: normal;
-      margin-top: 0;
-    }
-
-    h2 {
-      margin-top: 40px;
-      color: #2980b9;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 5px;
-    }
-
-    /* ===== Education Section Styles ===== */
-    .education-list {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .education-card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 16px 20px;
-      margin: 16px 0;
-    }
-
-    .degree {
-      font-weight: bold;
-      font-size: 1.1em;
-      margin: 0;
-      color: #2c3e50;
-    }
-
-    .school {
-      margin: 2px 0 4px 0;
-      font-size: 1rem;
-      color: #444;
-    }
-
-    .period {
-      margin: 0 0 8px 0;
-      font-size: 0.95em;
-      color: #777;
-    }
-
-    .theme {
-      margin: 0;
-      font-size: 0.95em;
-    }
-
-    .theme em {
-      font-style: italic;
-    }
-
-    /* Fix subscript/superscript alignment */
-    sub, sup {
-      font-size: 0.75em;
-      line-height: 0;
-      position: relative;
-      vertical-align: baseline;
-    }
-    sub { bottom: -0.25em; }
-    sup { top: -0.45em; }
+    /* --- Optional: nice small styles used in your Education include --- */
+    .education-list{list-style:none; padding:0; margin:0}
+    .education-card{background:#fff; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,.08);
+      padding:16px 20px; margin:14px 0}
+    .degree{margin:0; font-weight:700; color:#2c3e50}
+    .school{margin:2px 0 4px; color:#444}
+    .period{margin:0 0 8px; color:#777; font-size:.95rem}
+    .theme{margin:0}
+    sub, sup{font-size:.75em; line-height:0; position:relative; vertical-align:baseline}
+    sub{bottom:-.25em} sup{top:-.45em}
   </style>
 </head>
 <body>
   <h1>Krisana Kobwittaya, Ph.D.</h1>
-  <h3>University Lecturer at KMUTT | PhD, MIEnvSc | Environmental Engineer | Researcher | AI Trainer</h3>
+  <h3>University Lecturer at KMUTT | MIEnvSc | Environmental Engineer | Researcher | AI Trainer</h3>
 
-  <p>Welcome to my personal website hosted on GitHub Pages 🎉</p>
+  <div class="tabs" role="tablist" aria-label="Profile sections">
+    <ul class="tab-list">
+      <li><button class="tab-btn" role="tab" id="tab-education" aria-controls="panel-education" aria-selected="true">Education</button></li>
+      <li><button class="tab-btn" role="tab" id="tab-experience" aria-controls="panel-experience" aria-selected="false">Work Experience</button></li>
+      <li><button class="tab-btn" role="tab" id="tab-awards" aria-controls="panel-awards" aria-selected="false">Honors & Awards</button></li>
+    </ul>
 
-  <!-- Education section pulled in -->
-  {% include education.html %}
+    <section id="panel-education" class="tab-panel" role="tabpanel" aria-labelledby="tab-education" aria-hidden="false">
+      {% include education.html %}
+    </section>
 
-  <p>Thank you for visiting!</p>
+    <section id="panel-experience" class="tab-panel" role="tabpanel" aria-labelledby="tab-experience" aria-hidden="true">
+      {% include experience.html %}
+    </section>
+
+    <section id="panel-awards" class="tab-panel" role="tabpanel" aria-labelledby="tab-awards" aria-hidden="true">
+      {% include awards.html %}
+    </section>
+  </div>
+
+  <script>
+    // Simple accessible tabs + URL hash support
+    (function () {
+      const tabs = Array.from(document.querySelectorAll('.tab-btn'));
+      const panels = Array.from(document.querySelectorAll('.tab-panel'));
+
+      function show(id){
+        tabs.forEach(t => t.setAttribute('aria-selected', String(t.id === 'tab-' + id)));
+        panels.forEach(p => p.setAttribute('aria-hidden', String(p.id !== 'panel-' + id)));
+        // update hash so you can deep-link like …/#experience
+        if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+      }
+
+      // click to switch
+      tabs.forEach(btn => btn.addEventListener('click', () => {
+        const id = btn.id.replace('tab-','');
+        show(id);
+      }));
+
+      // open from hash if present
+      const hash = (location.hash || '#education').replace('#','');
+      const valid = ['education','experience','awards'].includes(hash) ? hash : 'education';
+      show(valid);
+    })();
+  </script>
 </body>
 </html>
