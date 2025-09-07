@@ -93,9 +93,16 @@
 
   <p>Welcome to my personal website hosted on GitHub Pages 🎉</p>
 
-  <!-- Education section pulled in -->
-  {% include education.html %}
+  <!-- Top Tab (only Education for now) -->
+  <nav class="tab-bar" role="tablist">
+    <button class="tab-btn" role="tab" id="tab-education" aria-controls="panel-education" aria-selected="true">
+      Education
+    </button>
+  </nav>
 
-  <p>Thank you for visiting!</p>
+  <!-- Panel -->
+  <section id="panel-education" class="tab-panel" role="tabpanel" aria-labelledby="tab-education" aria-hidden="false">
+    {% include education.html %}
+  </section>
 </body>
-</html>
+</html
